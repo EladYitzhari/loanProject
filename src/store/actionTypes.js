@@ -1,0 +1,2 @@
+export const INSERT_NEW_LOAN = 'INSERT_NEW_LOAN';
+export const TOGGLE_LOAN_DIV = 'TOGGLE_LOAN_DIV';

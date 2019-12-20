@@ -1,4 +1,5 @@
 import * as actionTypes from '../store/actionTypes'
+import { act } from 'react-dom/test-utils';
 
 
 const initialState = {
@@ -20,6 +21,18 @@ const reducer = (state = initialState ,action) => {
             {
                 let newLoans = [...state.loans];
                 newLoans.push(action.value);
+                return {
+                   ...state,
+                   loans: newLoans,
+                   showLoanComponent:false
+                   
+            }
+        }
+        case actionTypes.DELETE_LOAN:
+            {
+                let newLoans = [...state.loans];
+                console.log(newLoans);
+                newLoans.splice(action.value,1);
                 return {
                    ...state,
                    loans: newLoans

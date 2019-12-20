@@ -1,0 +1,19 @@
+.loansTable
+{
+    width: 50%;
+    font-size: 70%;
+    margin-right: 3%;
+}
+
+.loanTableTH{
+    padding:1%;
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    border:3px solid cornflowerblue;
+}
+.loanTableTD{
+    padding:1%;
+    text-align: center;
+    border:1px solid cornflowerblue;
+}

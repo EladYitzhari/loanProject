@@ -1,8 +1,9 @@
 .mainSingleDiv
 {
     width: 40%;
-   
+   margin-right: 30%;
 }
 .calculatorImgTd{
     text-align: left;
 }
+

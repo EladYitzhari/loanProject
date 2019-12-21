@@ -3,7 +3,7 @@ import '../Css/LoansTable.css'
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actionTypes'
 import garbegeImg from '../../img/bin-red-full-icon.png'
-
+import eyeImg from '../../img/eye-icon.png'
 
 class LoansTable extends Component {
     state = {  }
@@ -32,7 +32,10 @@ class LoansTable extends Component {
                         <td>{loan.n}</td>
                         <td>{loan.interest}</td>
                         <td>{loan.linkageIndex}</td>
-                        <td><img src={garbegeImg} alt="garbageImg" onClick={(index) => this.props.deleteLoan(index)}/></td>
+                        <td>
+                            <img className='loanTableImg' src={garbegeImg} alt="garbageImg" onClick={(index) => this.props.deleteLoan(index)}/>
+                            <img className='loanTableImg' src={eyeImg} alt='eyeImg' />
+                        </td>
             
                     </tr>              
                     )

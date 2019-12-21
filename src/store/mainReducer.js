@@ -4,7 +4,8 @@ import { act } from 'react-dom/test-utils';
 
 const initialState = {
     showLoanComponent: false,
-    loans:[]
+    loans:[],
+    linkageArray:[]
 }
 
 const reducer = (state = initialState ,action) => {
@@ -19,8 +20,9 @@ const reducer = (state = initialState ,action) => {
         }
         case actionTypes.INSERT_NEW_LOAN:
             {
+                let  theLoan = {...action.value};
                 let newLoans = [...state.loans];
-                newLoans.push(action.value);
+                newLoans.push(theLoan);
                 return {
                    ...state,
                    loans: newLoans,
@@ -39,6 +41,7 @@ const reducer = (state = initialState ,action) => {
                    
             }
         }
+       
         
     }
     

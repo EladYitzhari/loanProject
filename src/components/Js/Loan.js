@@ -5,6 +5,7 @@ import * as actionTypes from '../../store/actionTypes'
 import calculator from '../../img/calculator-icon.png'
 import * as finance from '../Js/FinanceFunctions' 
 import Spinner from './Spinner';
+import LinkageIndexArray from './LinkageIndexArray';
 
 
 class Loan extends Component {
@@ -15,14 +16,19 @@ class Loan extends Component {
         pmt:0,
         n:0,
         linkageIndex:"ללא",
+        linkageIndexArray:[],
         pmtArray:[],
         showUploadSpinner:false
      }
 
+    updateLinkedIndexArray=(linkageIndexArray)=>{
+        let linkArray = [...linkageIndexArray];
+        this.setState({linkageIndexArray:linkArray})
+    }
     createPMTarray=()=>{
         let loanDetails={...this.state};
         let theArray=[];
-        //the first pamt
+        //the first pmt
         theArray.push({pmt:loanDetails.pmt,
             principal_begin:loanDetails.PV,
             pmt_Interest:loanDetails.PV*loanDetails.monthlyInterest/100,
@@ -84,6 +90,19 @@ class Loan extends Component {
         {
             spinner =<Spinner/>;
         }
+
+        let linkageIndexArray = null;
+        if(this.state.linkageIndex !=="ללא"){
+            let array= [];
+            for(let i=0;i<this.state.n;i++){
+                array.push(0);
+            };
+            linkageIndexArray = <LinkageIndexArray 
+                                    n={array} 
+                                    updateLinkedIndexArray={this.updateLinkedIndexArray}
+                                    />
+        }
+
         return ( 
             <div className="mainSingleDiv flipInX animated shadow-lg p-3 mb-5 bg-white rounded">
             <table>
@@ -137,8 +156,8 @@ class Loan extends Component {
                             <option value="אג''ח">אג"ח</option>
                         </select>
                     </td>
-                   
                 </tr>
+                {linkageIndexArray}
                 <tr>
                     <td></td>
                     {/* <td><button className="btn btn-info" onClick={this.sendData}>הכנס את ההלוואה</button></td> */}
@@ -160,7 +179,12 @@ class Loan extends Component {
     }
 }
 
-
+const mapStateToProp = state =>
+{
+    return {
+        linkageIndexArray: state.main.linkageArray        
+        }
+}
 const mapDispatchToProps = dispatch =>
 {
     return {
@@ -170,4 +194,4 @@ const mapDispatchToProps = dispatch =>
 }
 
 
-export default connect(null,mapDispatchToProps)(Loan);
+export default connect(mapStateToProp,mapDispatchToProps)(Loan);

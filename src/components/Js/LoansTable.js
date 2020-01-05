@@ -4,11 +4,35 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actionTypes'
 import garbegeImg from '../../img/bin-red-full-icon.png'
 import eyeImg from '../../img/eye-icon.png'
+import LoanIdCard from './LoanIdCard';
 
 class LoansTable extends Component {
-    state = {  }
+    state = { 
+        showLoanIdCard:false,
+        inspectLoan:0
+     }
+
+
+
+     ChooseLoanToInspect=(id)=>{
+
+         this.setState({
+                        showLoanIdCard: !this.state.showLoanIdCard
+                        });
+
+     }
+
+
+
     render() { 
+
+        let loanIdCard = null;
+        if(this.state.showLoanIdCard){
+            loanIdCard =  <LoanIdCard loanDetails={this.props.loans[this.state.inspectLoan]}/>;
+        }
+
         return ( 
+            <React.Fragment>
             <table className='loansTable table table-hover'>
                 <thead>
                 <tr className='loanTableTH'>
@@ -23,6 +47,7 @@ class LoansTable extends Component {
                 </thead>
                 <tbody>
                 {this.props.loans.map( (loan,index) => {
+                    
                     return (
                        
                     <tr key={'loanRow'+index} className="loanTableTD">
@@ -33,8 +58,8 @@ class LoansTable extends Component {
                         <td>{loan.interest}</td>
                         <td>{loan.linkageIndex}</td>
                         <td>
-                            <img className='loanTableImg' src={garbegeImg} alt="garbageImg" onClick={(index) => this.props.deleteLoan(index)}/>
-                            <img className='loanTableImg' src={eyeImg} alt='eyeImg' />
+                            <img className='loanTableImg' src={garbegeImg} alt="garbageImg" onClick={()=> this.props.DeleteLoan(index)}/>
+                            <img className='loanTableImg' src={eyeImg} alt='eyeImg' onClick={()=>this.props.LoanToInspect(index)}/>
                         </td>
             
                     </tr>              
@@ -42,6 +67,10 @@ class LoansTable extends Component {
                 })}
                 </tbody>
             </table>
+
+                {loanIdCard}
+               
+           </React.Fragment>
          );
     }
 }
@@ -56,7 +85,8 @@ const mapStateToProp = state =>
 const mapDispatchToProps = dispatch =>
 {
     return {
-        deleteLoan: (val) => dispatch({type:actionTypes.DELETE_LOAN,value:val}),
+        DeleteLoan: (val) => dispatch({type:actionTypes.DELETE_LOAN,value:val}),
+        LoanToInspect: (val) => dispatch({type:actionTypes.INSPECT_LOAN,value:val})
     }
 }
 

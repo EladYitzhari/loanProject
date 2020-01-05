@@ -36,12 +36,27 @@ class Loan extends Component {
             principal_end:loanDetails.PV-(loanDetails.pmt-loanDetails.PV*loanDetails.monthlyInterest/100)
         })
         for( let i=1;i<loanDetails.n;i++){
-           let row={pmt:loanDetails.pmt,
-                principal_begin:theArray[i-1].principal_end,
-                pmt_Interest:theArray[i-1].principal_end*loanDetails.monthlyInterest/100,
-                pmt_Principal:loanDetails.pmt-theArray[i-1].principal_end*loanDetails.monthlyInterest/100,
-                principal_end:theArray[i-1].principal_end-(loanDetails.pmt-theArray[i-1].principal_end*loanDetails.monthlyInterest/100)
-            };
+            let row;
+            if(this.state.linkageIndexArray.length===0){
+                row={pmt:loanDetails.pmt,
+                    principal_begin:theArray[i-1].principal_end,
+                    pmt_Interest:theArray[i-1].principal_end*loanDetails.monthlyInterest/100,
+                    pmt_Principal:loanDetails.pmt-theArray[i-1].principal_end*loanDetails.monthlyInterest/100,
+                    principal_end:theArray[i-1].principal_end-(loanDetails.pmt-theArray[i-1].principal_end*loanDetails.monthlyInterest/100)
+                };
+            }else{
+                let newPvAfterLinkage = (this.state.linkageIndexArray.length===0) ?0: theArray[i-1].principal_end*(1+loanDetails.linkageIndexArray[i-1]/100);
+                let newPmtAfterLinkage = (this.state.linkageIndexArray.length===0) ?0:finance.PMT(newPvAfterLinkage,loanDetails.interest/12/100,loanDetails.n-i);
+                row={
+                    originalPmt:loanDetails.pmt,
+                    pmt:newPmtAfterLinkage,
+                    principal_begin:newPvAfterLinkage,
+                    pmt_Interest:newPvAfterLinkage*loanDetails.monthlyInterest/100,
+                    pmt_Principal:newPmtAfterLinkage-newPvAfterLinkage*loanDetails.monthlyInterest/100,
+                    principal_end:newPvAfterLinkage-(newPmtAfterLinkage-newPvAfterLinkage*loanDetails.monthlyInterest/100)
+                };
+            }
+  
             theArray.push(row);
 
         }
@@ -51,8 +66,8 @@ class Loan extends Component {
     setSingleLoanDetailInLoaclStete = (e,key) =>
     {
         this.setState({[key] : e.target.value});
-        if(key==='n'){
-            this.setState({monthlyInterest:e.target.value/12});
+        if(key === 'n'){
+            this.setState({monthlyInterest:this.state.interest/12});
         }
     
     }
@@ -108,9 +123,9 @@ class Loan extends Component {
             <table>
             <tbody>
                
-                <tr>
-                    <td></td>
+                <tr>            
                     <td style={{textDecoration:'underline'}}>הלוואה חדשה</td>
+                    <td></td>
                     <td></td>
                     
                 </tr>

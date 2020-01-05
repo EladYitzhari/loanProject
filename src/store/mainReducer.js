@@ -5,7 +5,8 @@ import { act } from 'react-dom/test-utils';
 const initialState = {
     showLoanComponent: false,
     loans:[],
-    linkageArray:[]
+    inspectLoan:0
+  
 }
 
 const reducer = (state = initialState ,action) => {
@@ -32,12 +33,25 @@ const reducer = (state = initialState ,action) => {
         }
         case actionTypes.DELETE_LOAN:
             {
-                let newLoans = [...state.loans];
-                console.log(newLoans);
-                newLoans.splice(action.value,1);
+                let mirorArray = [...state.loans];
+                let newLoans = [];
+                mirorArray.map((a,index)=>{
+                    if(index !== action.value){
+                        newLoans.push(a);
+                    }
+                })
+                // newLoans.splice(action.value,1);
                 return {
                    ...state,
                    loans: newLoans
+                   
+            }
+        }
+        case actionTypes.INSPECT_LOAN:
+            {
+                return {
+                    ...state,
+                    inspectLoan: action.value
                    
             }
         }

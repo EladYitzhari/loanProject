@@ -6,7 +6,7 @@ import calculator from '../../img/calculator-icon.png'
 import * as finance from '../Js/FinanceFunctions' 
 import Spinner from './Spinner';
 import LinkageIndexArray from './LinkageIndexArray';
-
+import { Input ,Table, Icon,Button,Select} from 'semantic-ui-react'
 
 class Loan extends Component {
     state = { 
@@ -71,6 +71,9 @@ class Loan extends Component {
         }
     
     }
+    setLinkageType=(e,data)=>{
+        this.setState({linkageIndex:data.value});
+    }
 
     calculatePV =()=>
     {
@@ -98,6 +101,10 @@ class Loan extends Component {
         }, 2000);
         
     }
+
+    aaa=()=>{
+        alert('test')
+    }
     render() { 
 
         let spinner = null;
@@ -117,75 +124,84 @@ class Loan extends Component {
                                     updateLinkedIndexArray={this.updateLinkedIndexArray}
                                     />
         }
-
+         
         return ( 
-            <div className="mainSingleDiv flipInX animated shadow-lg p-3 mb-5 bg-white rounded">
-            <table>
-            <tbody>
+        <div className="mainSingleDiv flipInX animated shadow-lg p-3 mb-5 bg-white rounded">
+           <Table celled textAlign='right' >
+            <Table.Header>
+            <Table.Row>
+                <Table.HeaderCell textAlign='right' colSpan='3'>הלוואה חדשה</Table.HeaderCell>
+            </Table.Row>
+            </Table.Header>
+
+            <Table.Body>       
+            <Table.Row>
+                <Table.Cell> סכום נוכחי </Table.Cell> 
+                <Table.Cell><Icon name='calculator'  onClick={this.calculatePV}/></Table.Cell>         
+                <Table.Cell>
+                    <Input id="PV" type='number' onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'PV')} icon='cart' value={this.state.PV} iconPosition='left' placeholder='0' />
+                </Table.Cell>   
+             </Table.Row>
+             <Table.Row>
+                <Table.Cell>ריבית שנתית </Table.Cell> 
+                <Table.Cell><Icon name='calculator'  onClick={this.calculateInterest}/></Table.Cell>         
+                <Table.Cell>
+                    <Input id="interest" type='number' onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'interest')} icon='info' value={this.state.interest} iconPosition='left' placeholder='0' />
+                </Table.Cell>   
+             </Table.Row>
+             <Table.Row>
+                <Table.Cell>החזר חודשי </Table.Cell> 
+                <Table.Cell><Icon name='calculator'  onClick={this.calculatePMT}/></Table.Cell>         
+                <Table.Cell>
+                    <Input id="pmt" type='number' onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'pmt')} icon='credit card' value={this.state.pmt} iconPosition='left' placeholder='0' />
+                </Table.Cell>   
+             </Table.Row>
+             <Table.Row>
+                <Table.Cell> מספר חודשים </Table.Cell> 
+                <Table.Cell></Table.Cell>         
+                <Table.Cell>
+                    <Input id="n" type='number' onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'n')} icon='calendar alternate' value={this.state.n} iconPosition='left' placeholder='0' />
+                </Table.Cell>   
+             </Table.Row>
+             <Table.Row>
+                <Table.Cell> סוג הצמדה </Table.Cell> 
+                <Table.Cell></Table.Cell>         
+                <Table.Cell>
+                <Select   
+                 options={[
+                    { key: 'ללא', text: 'ללא', value: 'ללא' },
+                    { key: 'מדד', text: 'מדד', value: 'מדד' },
+                    { key: 'דולר', text: 'דולר', value: 'דולר' },
+                    { key: 'יורו', text: 'יורו', value: 'יורו' },
+                    { key: 'אגח', text: 'אגח', value: 'אגח' }
+                    ]} defaultValue='ללא' 
+                    onChange={this.setLinkageType}/>
+                </Table.Cell>   
+             </Table.Row>
+
+             {linkageIndexArray}
+                </Table.Body>
                
-                <tr>            
-                    <td style={{textDecoration:'underline'}}>הלוואה חדשה</td>
-                    <td></td>
-                    <td></td>
-                    
-                </tr>
-                <tr>
-                    <td>סכום נוכחי </td>
-                    <td className="calculatorImgTd"><img className="calculatorImg" alt="calculator Img" src={calculator} 
-                            onClick={this.calculatePV}/></td>
-                    <td><input id="PV" value={this.state.PV} onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'PV')} placeholder='0'  type="number" className="form-control"/></td>
-                    
-                </tr>
-                <tr>
-                    <td>ריבית שנתית  </td>
-                    <td className="calculatorImgTd">
-                        <img className="calculatorImg" alt="calculator Img" src={calculator} 
-                            onClick={this.calculateInterest}/>
-                    </td>
-                    <td><input id='interest' value={this.state.interest} type="number" onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'interest')} className="form-control"/></td>
-                    
-                </tr>
-                <tr>
-                    <td>החזר חודשי  </td>
-                    <td className="calculatorImgTd">
-                        <img className="calculatorImg" alt="calculator Img" src={calculator} onClick={this.calculatePMT} />
-                    </td>
-                    <td><input id='pmt' value={this.state.pmt} type="number" onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'pmt')} className="form-control"/></td>
-                    
-                </tr>
-                <tr>
-                    <td>מספר חודשים  </td>
-                    <td className="calculatorImgTd"></td>
-                    <td><input id='n' value={this.state.n} type="number" onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'n')} className="form-control"/></td>
-                    
-                </tr>
-                <tr>
-                    <td>סוג הצמדה </td>
-                    <td></td>
-                    <td>  
-                        <select value={this.state.linkageIndex}  onChange={(e) => this.setSingleLoanDetailInLoaclStete(e,'linkageIndex')} className="form-control">
-                            <option value="ללא">ללא</option>
-                            <option value="מדד">מדד</option>
-                            <option value="דולר">דולר</option>
-                            <option value="יורו">יורו</option>
-                            <option value="אג''ח">אג"ח</option>
-                        </select>
-                    </td>
-                </tr>
-                {linkageIndexArray}
-                <tr>
-                    <td></td>
-                    {/* <td><button className="btn btn-info" onClick={this.sendData}>הכנס את ההלוואה</button></td> */}
-                    <td><button className="btn btn-info" onClick={this.insertNewLoan}>הוסף את ההלוואה</button></td>
-                    <td>{spinner}</td>
-                </tr>
+                <Table.Footer fullWidth>
+                    <Table.Row>
+                    <Table.HeaderCell />
+                    <Table.HeaderCell colSpan='3'>
+                    <Button
+                         onClick={this.insertNewLoan}
+                        floated='left'
+                        icon
+                        labelPosition='right'
+                        primary
+                        size='big'
+                    >
+                        <Icon name='add circle' /> הוסף הלוואה
+                    </Button>
+                    {spinner}
+                    </Table.HeaderCell>
 
-
-
-
-                </tbody>
-            </table>
-            
+                    </Table.Row>
+                </Table.Footer>
+             </Table>      
         </div>
 
 

@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actionTypes'
 import LoansTable from '../../components/Js/LoansTable'
 import ChartLoanLife from '../../components/Js/ChartLoanLife'
+import { Input ,Table, Icon,Button,Select} from 'semantic-ui-react'
 
 
 class HomePage extends Component {
@@ -35,7 +36,7 @@ class HomePage extends Component {
               <div>ברוכים הבאים לאפליקציית תיק הלוואות</div>
               <img src={loanFolder} alt='loanImg'/>
            </div>
-           <button onClick={this.props.toggleLoan}  className='btn homePage_newLoanBtn'>הוספת הלוואה לתיק</button>
+           <Button size='huge' color='instagram' onClick={this.props.toggleLoan}>הוספת הלוואה לתיק<Icon name='add' />  </Button>
            {loan}
            {loansTable}
            {loanChart}

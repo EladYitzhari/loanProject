@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Css/LinkageIndexArray.css'
+import { Input ,Table, Icon,Button,Select} from 'semantic-ui-react'
 
 
 
@@ -25,11 +26,17 @@ class LinkageIndexArray extends Component {
         return (  
             <React.Fragment>
                 {this.state.linkageArray.map((n,index)=>{
-                    return <tr className='linkageTr' key={'linkageTr'+index}>
-                        <td className='textTdLinkageArray'>תקופה {index+1}</td>
-                        <td>%</td>
-                        <td><input type='number' className='form-control' onChange={(e)=>this.updateLinkageInterest(e,index)} value={n}/></td>
-                    </tr>
+                    return (
+                    <Table.Row  key={'linkageTr'+index}>
+                        <Table.Cell>תקופה {index+1}</Table.Cell>
+                        <Table.Cell>%</Table.Cell>
+                        <Table.Cell><Input type='number'
+                        onChange={(e)=>this.updateLinkageInterest(e,index)} value={n}
+                        /></Table.Cell>
+                    </Table.Row>
+                    )
+                    
+                    
                 })}
             </React.Fragment>
         );

@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/loanProject/static/css/main.1c6e8f07.chunk.css",
-    "main.js": "/loanProject/static/js/main.c73ca6bf.chunk.js",
-    "main.js.map": "/loanProject/static/js/main.c73ca6bf.chunk.js.map",
+    "main.css": "/loanProject/static/css/main.e5d86b24.chunk.css",
+    "main.js": "/loanProject/static/js/main.11f6c2b7.chunk.js",
+    "main.js.map": "/loanProject/static/js/main.11f6c2b7.chunk.js.map",
     "runtime-main.js": "/loanProject/static/js/runtime-main.4ceb6404.js",
     "runtime-main.js.map": "/loanProject/static/js/runtime-main.4ceb6404.js.map",
-    "static/css/2.980b56eb.chunk.css": "/loanProject/static/css/2.980b56eb.chunk.css",
-    "static/js/2.8bcca9a5.chunk.js": "/loanProject/static/js/2.8bcca9a5.chunk.js",
-    "static/js/2.8bcca9a5.chunk.js.map": "/loanProject/static/js/2.8bcca9a5.chunk.js.map",
+    "static/css/2.f820f775.chunk.css": "/loanProject/static/css/2.f820f775.chunk.css",
+    "static/js/2.097b1ae0.chunk.js": "/loanProject/static/js/2.097b1ae0.chunk.js",
+    "static/js/2.097b1ae0.chunk.js.map": "/loanProject/static/js/2.097b1ae0.chunk.js.map",
     "index.html": "/loanProject/index.html",
-    "precache-manifest.019fe9dd50d0e71eac1b4839f4b320b0.js": "/loanProject/precache-manifest.019fe9dd50d0e71eac1b4839f4b320b0.js",
+    "precache-manifest.f6c0dcdf1e2d2f0e32737ab5941bad68.js": "/loanProject/precache-manifest.f6c0dcdf1e2d2f0e32737ab5941bad68.js",
     "service-worker.js": "/loanProject/service-worker.js",
-    "static/css/2.980b56eb.chunk.css.map": "/loanProject/static/css/2.980b56eb.chunk.css.map",
-    "static/css/main.1c6e8f07.chunk.css.map": "/loanProject/static/css/main.1c6e8f07.chunk.css.map",
-    "static/js/2.8bcca9a5.chunk.js.LICENSE": "/loanProject/static/js/2.8bcca9a5.chunk.js.LICENSE",
+    "static/css/2.f820f775.chunk.css.map": "/loanProject/static/css/2.f820f775.chunk.css.map",
+    "static/css/main.e5d86b24.chunk.css.map": "/loanProject/static/css/main.e5d86b24.chunk.css.map",
+    "static/js/2.097b1ae0.chunk.js.LICENSE": "/loanProject/static/js/2.097b1ae0.chunk.js.LICENSE",
     "static/media/Loan.JPG": "/loanProject/static/media/Loan.6775185f.JPG",
     "static/media/semantic.min.css": "/loanProject/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.4ceb6404.js",
-    "static/css/2.980b56eb.chunk.css",
-    "static/js/2.8bcca9a5.chunk.js",
-    "static/css/main.1c6e8f07.chunk.css",
-    "static/js/main.c73ca6bf.chunk.js"
+    "static/css/2.f820f775.chunk.css",
+    "static/js/2.097b1ae0.chunk.js",
+    "static/css/main.e5d86b24.chunk.css",
+    "static/js/main.11f6c2b7.chunk.js"
   ]
 }

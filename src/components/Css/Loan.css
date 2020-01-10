@@ -1,6 +1,8 @@
 .mainSingleDiv
 {
     width: 30%;
-   margin-right: 30%;
+    top: 20%;
+   margin-right: 35%;
+   position: fixed;
 }
 

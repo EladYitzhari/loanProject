@@ -184,13 +184,13 @@ class Loan extends Component {
                
                 <Table.Footer fullWidth>
                     <Table.Row>
-                    <Table.HeaderCell />
+                   
                     <Table.HeaderCell colSpan='3'>
                     <Button
                          onClick={this.insertNewLoan}
-                        floated='left'
+                        floated='right'
                         icon
-                        labelPosition='right'
+                        labelPosition='left'
                         primary
                         size='big'
                     >

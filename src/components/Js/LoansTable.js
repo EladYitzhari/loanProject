@@ -5,7 +5,7 @@ import * as actionTypes from '../../store/actionTypes'
 import garbegeImg from '../../img/bin-red-full-icon.png'
 import eyeImg from '../../img/eye-icon.png'
 import LoanIdCard from './LoanIdCard';
-import { Input ,Table, Label,Button,Select} from 'semantic-ui-react'
+import { Table, Label,Button,Select} from 'semantic-ui-react'
 
 class LoansTable extends Component {
     state = { 
@@ -34,8 +34,8 @@ class LoansTable extends Component {
 
         return ( 
             <React.Fragment>
-            <Table style={{width:'50%'}}  color='olive'>
-                <Table.Header color='olive'>
+            <Table celled collapsing>
+                <Table.Header >
                     <Table.Row>
                         <Table.HeaderCell >קוד</Table.HeaderCell>
                         <Table.HeaderCell  >סכום</Table.HeaderCell> 
@@ -54,11 +54,12 @@ class LoansTable extends Component {
                        
                     <Table.Row key={'loanRow'+index} className="loanTableTD">
                        
-                        <Table.Cell> <Label  ribbon='right'>{index+1}</Label></Table.Cell>
-                        <Table.Cell>{loan.PV}</Table.Cell>
-                        <Table.Cell>{loan.pmt}</Table.Cell>
+ 
+                        <Table.Cell> <Label color='blue' size='big' ribbon='right'>{index+1}</Label></Table.Cell>
+                        <Table.Cell>{loan.PV.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Table.Cell>
+                        <Table.Cell>{loan.pmt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Table.Cell>
                         <Table.Cell>{loan.n}</Table.Cell>
-                        <Table.Cell>{loan.interest}</Table.Cell>
+                        <Table.Cell>{loan.interest+"%"}</Table.Cell>
                         <Table.Cell>{loan.linkageIndex}</Table.Cell>
                         <Table.Cell>
                             <img className='loanTableImg' src={garbegeImg} alt="garbageImg" onClick={()=> this.props.DeleteLoan(index)}/>

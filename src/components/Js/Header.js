@@ -16,7 +16,7 @@ class Header
                     <li className="header_li"><NavLink to="/SingleLoanPage">פרטי הלוואה</NavLink></li>
                     <li className="header_li owl-icon"><img src={owl}/></li>
                 </ul>
-
+            
 
 
             <Route path="/Home" exact component={HomePage}   />
